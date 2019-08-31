@@ -21,7 +21,7 @@ public class FastFibonacci {
 	}
 
 	public static void main(String args[]) {
-		int n = 100000;
+		int n = 20;
 		System.out.println(calc_fib(n));
 	}
 }
