@@ -1,3 +1,4 @@
+package Week1_2;
 import java.util.*;
 import java.io.*;
 
@@ -14,9 +15,11 @@ public class FastFibonacci {
 
 		for (int i = 2; i <= n; i++) {
 			fibArr[i] = fibArr[i - 1] + fibArr[i - 2];
-			fibArr[n] = fibArr[i];
 		}
-
+		/*
+		for (long j : fibArr) {
+		System.out.println(j);
+		}*/
 		return fibArr[n];
 	}
 
