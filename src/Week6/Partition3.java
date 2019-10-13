@@ -1,3 +1,4 @@
+package Week6;
 import java.util.*;
 import java.io.*;
 
@@ -73,23 +74,19 @@ public class Partition3 {
 	    2.) They do not overflow the current bucket we are filling
 	  */
 	  for (int i = iterationStart; i < arr.length; i++) {
+		 //if items is not used in bucket, try item and mark used
 	    if (!used[i] && inProgressBucketSum + arr[i] <= targetBucketSum) {
 	      used[i] = true;
-	      /*
-	        See if we can partition from this point with the item added
-	        to the current bucket progress
-	      */
+	      
+	      // See if we can partition from this point with the item added to the current bucket progress
 	      if (canPartition(i + 1, arr, used, k, inProgressBucketSum + arr[i], targetBucketSum)) {
 	        return true;
 	      }
+	      //if item cannot partition, mark it as not used
 	      used[i] = false;
 	    }
 	  }
 
-	  /*
-	    Partitioning from this point is impossible. Whether we are at the
-	    top level of the recursion or deeper into it.
-	  */
 	  return false;
 	}
 
