@@ -39,6 +39,7 @@ public class BuildHeap {
       // but in the worst case gives a quadratic number of swaps.
       //
       // TODO: replace by a more efficient implementation
+      /*
       for (int i = 0; i < data.length; ++i) {
         for (int j = i + 1; j < data.length; ++j) {
           if (data[i] > data[j]) {
@@ -48,7 +49,54 @@ public class BuildHeap {
             data[j] = tmp;
           }
         }
+      }*/
+      int size = data.length;
+      for (int i=size/2; i>0; i--) {
+    	  SiftDown(i, size);
       }
+     
+      
+    }
+    
+    
+    private int getLeftChildIndex(int parentIndex) {
+    	return 2 * parentIndex + 1;
+    }
+    
+    private int getRightChildIndex(int parentIndex) {
+    	return 2 * parentIndex + 2;
+    }
+    
+    private void SiftDown(int i, int size) {
+    	int minIndex = i;
+    	int l = getLeftChildIndex(i);
+    	
+    	//if left child is within index range and value of left child is lesser than value of minimum index
+    	//let min index be l
+    	if (l <= size - 1 && data[l] < data[minIndex]) {
+    		minIndex = l;
+    	}
+    	
+    	int r = getRightChildIndex(i);
+    	if (r <= size - 1 && data[r] < data[minIndex]) {
+    		minIndex = r;
+    	}
+    	
+    	//if min index is swapped and no longer i then append the swap history
+    	if (i != minIndex) {
+    		int temp = data[i];
+    		data[i] = data[minIndex];
+    		data[minIndex] = temp;
+    		swaps.add(new Swap(i, minIndex));
+    		SiftDown(minIndex, size);
+    	}
+    	
+    	for (Swap s : swaps) {
+    		System.out.print(s.index1);
+    		System.out.print(s.index2);
+    	}
+    	
+    	System.out.println(swaps);
     }
 
     public void solve() throws IOException {
