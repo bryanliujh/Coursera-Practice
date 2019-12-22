@@ -33,8 +33,8 @@ public class BuildHeap {
 
     private void generateSwaps() {
       swaps = new ArrayList<Swap>();
-      int size = data.length;
-      for (int i=size/2; i>-1; i--) {
+      int size = data.length - 1;
+      for (int i=size/2; i>=0; i--) {
     	  SiftDown(i, size);
       }
      
@@ -56,12 +56,12 @@ public class BuildHeap {
     	
     	//if left child is within index range and value of left child is lesser than value of minimum index
     	//let min index be l
-    	if (l <= size - 1 && data[l] < data[minIndex]) {
+    	if (l <= size && data[l] < data[minIndex]) {
     		minIndex = l;
     	}
     	
     	int r = getRightChildIndex(i);
-    	if (r <= size - 1 && data[r] < data[minIndex]) {
+    	if (r <= size && data[r] < data[minIndex]) {
     		minIndex = r;
     	}
     	

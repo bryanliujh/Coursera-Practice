@@ -1,7 +1,8 @@
+package Week10;
 import java.util.*;
 import java.io.*;
 
-public class is_bst_hard {
+public class is_bst {
     class FastScanner {
         StringTokenizer tok = new StringTokenizer("");
         BufferedReader in;
@@ -37,7 +38,6 @@ public class is_bst_hard {
         Node[] tree;
         ArrayList<Integer> inOrderArrayList = new ArrayList<Integer>();
         int[] key, left, right;
-        boolean redflag;
         
         void read() throws IOException {
             FastScanner in = new FastScanner();
@@ -67,9 +67,6 @@ public class is_bst_hard {
         
         void inOrderTraversal(int root) {
         	if (left[root] != -1) {
-        		if (key[left[root]] >= key[root]) {
-        			redflag = true;
-        		} 
         		inOrderTraversal(left[root]);
         	}
         	inOrderArrayList.add(key[root]);
@@ -83,9 +80,6 @@ public class is_bst_hard {
           // Implement correct algorithm here
           inOrderTraversal(0);
           
-          if (redflag) {
-        	  return false;
-          }
           
           //copy arraylist like this
           ArrayList<Integer> in_order_unsort = new ArrayList<Integer>(inOrderArrayList.size());
@@ -103,7 +97,7 @@ public class is_bst_hard {
         new Thread(null, new Runnable() {
             public void run() {
                 try {
-                    new is_bst_hard().run();
+                    new is_bst().run();
                 } catch (IOException e) {
                 }
             }
